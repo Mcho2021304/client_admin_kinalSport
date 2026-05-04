@@ -25,7 +25,6 @@ useUIStore
         if (error) showError(error);
     }, [error]);
     
-
 return (
         <div className="p-4">
             {/* HEADER */}
@@ -39,7 +38,13 @@ return (
                     </p>
                 </div>
 
-                <button className="bg-main-blue px-4 py-2 rounded text-white hover:opacity-90 transition">
+                <button 
+                    className="bg-main-blue px-4 py-2 rounded text-white hover:opacity-90 transition"
+                    onClick={()=>{
+                        setSelectField(null);
+                        setOpenModal(true);
+                    }}
+                    >
                     + Agregar Campo
                 </button>
             </div>
@@ -54,7 +59,7 @@ return (
                     {/* IMAGEN */}
                     <div className="w-full h-52 bg-gray-100 flex items-center justify-center">
                     <img
-                        src={field.photo}
+                        src={`https://res.cloudinary.com/dktwa0obs/image/upload/v1777913827/kinal_sports/${field.photo}`}
                         alt={field.fieldName}
                         className="max-h-full max-w-full object-contain rounded-t-xl"
                     />
@@ -111,6 +116,16 @@ return (
                 </div>
                 ))}
             </div>
+
+            {/* COMPONENTE MODAL */}
+            <FieldModal
+            isOpen={openModal}
+            onClose={() => {
+                setOpenModal(false);
+                setSelectField(null);
+            }}
+            field={selectField}
+            />
         </div>
     );
 };

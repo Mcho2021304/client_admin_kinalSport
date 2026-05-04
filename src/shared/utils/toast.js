@@ -1,6 +1,6 @@
 import { toast } from "react-hot-toast";
 
-const baseSytle = {
+const baseStyle = {
     borderRadius : "8px",
     fontWeight: 600,
     fontFamily: "inherit",

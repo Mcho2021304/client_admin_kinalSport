@@ -29,7 +29,9 @@ export const FieldModal = ({ isOpen, onClose, field }) => {
           pricePerHour: field.pricePerHour,
           description: field.description,
         });
-        setPreview(field.photo);
+        setPreview(
+          `https://res.cloudinary.com/dptivpvni/image/upload/v1777996996/kinalSports/${field.photo}`
+        );
       } else {
         reset({
           fieldName: "",

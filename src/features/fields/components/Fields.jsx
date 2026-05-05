@@ -7,8 +7,6 @@ import { useUIStore } from "../../auth/store/uiStore";
 import { showError } from "../../../shared/utils/toast"
 import { spinner } from "@material-tailwind/react";
 import { FieldModal } from "./FieldModal";
-import { showConfirmToast } from "../../auth/components/ConfirmModal";
-import { deleteField } from "../../../shared/api";
  
  
 export const Fields = () => {
@@ -53,7 +51,7 @@ return (
  
             {/* GRID RESPONSIVE */}
             <div className="grid sm:grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-                {fields?.map((field) => (
+                {fields.map((field) => (
                 <div
                     key={field._id}
                     className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100 hover:scale-[1.02]"
@@ -61,7 +59,7 @@ return (
                     {/* IMAGEN */}
                     <div className="w-full h-52 bg-gray-100 flex items-center justify-center">
                     <img
-                        src={`https://res.cloudinary.com/dktwa0obs/image/upload/v1777913827/kinal_sports/${field.photo}`}
+                        src={`https://res.cloudinary.com/dptivpvni/image/upload/v1777996996/kinalSports/${field.photo}`}
                         alt={field.fieldName}
                         className="max-h-full max-w-full object-contain rounded-t-xl"
                     />
@@ -104,13 +102,10 @@ return (
                         <button
                         className="flex-1 py-2 rounded-lg bg-red-600 text-white font-medium hover:bg-red-700 transition"
                         onClick={() =>
-                            showConfirmToast({
-                                title: "Eliminar campo",
-                                message: `¿Eliminar ${field.fieldName}?`,
-                                onConfirm: () => {
-                                  console.log("CONFIRM EJECUTADO");
-                                  deleteField(field._id);
-                                }
+                            openConfirm({
+                            title: "Eliminar campo",
+                            message: `¿Eliminar ${field.fieldName}?`,
+                            onConfirm: () => deleteField(field._id),
                             })
                         }
                         >
